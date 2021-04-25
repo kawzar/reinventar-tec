@@ -9,20 +9,39 @@ public class Player : MonoBehaviour
 
     private bool isGrounded;
     private Rigidbody2D rb;
+    private Animator animator;
+    private SpriteRenderer sprite;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
-        transform.position = transform.position + Vector3.right * Input.GetAxis("Horizontal") * speed;
+        float horizontal = Input.GetAxis("Horizontal");
+        transform.position = transform.position + Vector3.right * horizontal * speed;
         CheckGround();
 
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+
+        if (isGrounded)
         {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                animator.SetTrigger("jump");
+                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            }
+            else if (horizontal != 0)
+            {
+                sprite.flipX = horizontal < 0;
+                animator.SetBool("isWalking", true);
+            }
+            else
+            {
+                animator.SetBool("isWalking", false);
+            }
         }
     }
 
