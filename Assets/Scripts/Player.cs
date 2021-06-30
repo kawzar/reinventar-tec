@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -6,11 +7,13 @@ public class Player : MonoBehaviour
     public float distanceToGround = 0.5f;
     public float jumpForce = 10;
     public LayerMask floorLayer;
+    public TextMeshProUGUI scoreText;
 
     private bool isGrounded;
     private Rigidbody2D rb;
     private Animator animator;
     private SpriteRenderer sprite;
+    private int diamonds = 0;
 
     private void Awake()
     {
@@ -22,7 +25,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         float horizontal = Input.GetAxis("Horizontal");
-        transform.position = transform.position + Vector3.right * horizontal * speed;
+        transform.position = transform.position + Vector3.right * horizontal * speed * Time.deltaTime;
         CheckGround();
 
 
@@ -49,5 +52,11 @@ public class Player : MonoBehaviour
     {
         var hit = Physics2D.Raycast(gameObject.transform.position, Vector2.down, distanceToGround, floorLayer);
         isGrounded = hit.collider != null;
+    }
+
+    public void OnDiamondGrabbed()
+    {
+        diamonds++;
+        scoreText.SetText(diamonds.ToString());
     }
 }
