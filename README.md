@@ -1,3 +1,3 @@
 # reinventar-tec
 Proyecto de muestra para charla de reinventar TEC
-![Flyer](01.png)
+![Flyer](WhatsApp Image 2021-06-28 at 13.46.10.jpeg)
