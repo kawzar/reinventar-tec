@@ -1,6 +1,9 @@
 # Vos También Podés Hacer Videojuegos
 Proyecto de muestra para charla de reinventar TEC
 
+[Link a la charla](https://youtu.be/tpH8p-2FCOg)
+[Presentacion](slides.pdf)
+
 
 ![Flyer](01.jpeg)
 
